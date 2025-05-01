@@ -1,20 +1,21 @@
 import React from 'react'
 import { Link } from 'react-router'
-import style from '../styles/header.module.scss'
+import { useThemeToggleStore } from '../store/themeStore';
+import { DarkToggleButton, HeaderStyle } from '../styles/layout';
+
+
 
 function Header() {
-  return (
-    <header>
-      <Link to={'/'} className={style.header__logo}>피클<span>잇</span></Link>
 
-      <nav>
-        <ul className={style.nav_gnb}>
-          <li>1</li>
-          <li>2</li>
-          <li>3</li>
-        </ul>
-      </nav>
-    </header>
+  const {toggleTheme, isDark} = useThemeToggleStore();
+
+  return (
+    <HeaderStyle>
+      <Link to={'/'} className='header-logo'>피클<span>잇</span></Link>
+
+      <span>편집</span>
+      <DarkToggleButton onClick={toggleTheme}>{isDark ? "🌝" : "🌚"}</DarkToggleButton>
+    </HeaderStyle>
   )
 }
 
