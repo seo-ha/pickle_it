@@ -3,31 +3,23 @@ import './App.css';
 import Header from './components/Header';
 import Home from './pages/Home';
 import Footer from './components/Footer';
-import { createGlobalStyle, ThemeProvider } from 'styled-components';
+import { ThemeProvider } from 'styled-components';
+import { Container, Globalstyle } from './styles/layout';
 import { useThemeToggleStore } from './store/themeStore';
 import { darkTheme, lightTheme } from './theme';
-import { Container } from './styles/layout';
 import ListPage from './pages/ListPage';
 import DetailPage from './pages/DetailPage';
 import { createContext, useEffect, useRef, useState } from 'react';
 
-const Globalstyle = createGlobalStyle`
-  body {
-    background-color: ${({ theme }) => theme.bg.bgMain};
-    color: ${({ theme }) => theme.font.fontMain};
-    transition: background 0.3s ease, color 0.3s ease;
-    font-family: "ongleaf",sans-serif;
-	  font-weight: 400;
-  }
-`
 
 export const MainContext = createContext();
 
 function App() {
 
+  const {isDark} = useThemeToggleStore();
+
   const ref = useRef(5);
   const [popup, setPopup] = useState(false)
-  const {isDark} = useThemeToggleStore();
   const [category, setCategory] = useState([
     { id:1, name :'movie', bg : 'blue'},
     { id:2, name :'ticket', bg:'yellow'},
@@ -40,10 +32,6 @@ function App() {
     console.log(category);
     
   },[category])
-
-  // const onCreateCategory = (props) =>{
-  //   setCategory([...category,{props}]);
-  // }
 
   return (
     <ThemeProvider theme={isDark ? darkTheme : lightTheme}>

@@ -1,4 +1,15 @@
-import styled from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
+
+/*Globalstyle*/
+export const Globalstyle = createGlobalStyle`
+  body {
+    background-color: ${({ theme }) => theme.bg.bgMain};
+    color: ${({ theme }) => theme.font.fontMain};
+    transition: background 0.3s ease, color 0.3s ease;
+    font-family: "ongleaf",sans-serif;
+    font-weight: 400;
+  }
+`
 
 /*header*/
 export const HeaderStyle = styled.header `
@@ -11,6 +22,7 @@ export const HeaderStyle = styled.header `
 
   .nav_gnb {display: flex; align-items: center;} 
 `
+
 /*다크모드 버튼*/
 export const DarkToggleButton = styled.button ` background: ${({ theme }) => theme.font.fontMain}; color: ${({ theme }) => theme.bg.bgMain}; border: none; padding: 10px 20px; cursor: pointer; border-radius: 8px;`;
 
@@ -24,7 +36,7 @@ export const FooterStyle = styled.footer `
  .nav-btn {
    display: flex; align-items: center; justify-content: center; width: 55px; aspect-ratio: auto 1/1;
 
-   &:nth-of-type(3) {border-radius: 50%; background-color: #333; color: #fff;}
+   &:nth-child(3) {border-radius: 50%; background-color: #333; color: #fff;}
  }
 `
 

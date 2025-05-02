@@ -11,6 +11,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Hanalei+Fill&display=swap" rel="stylesheet"/>
     <title>React App</title>
 
+    <script type="text/javascript">
+      (function(){
+        const isClient = typeof window !== 'undefined';
+        if(isClient) {
+          const storageTheme = window.localStorage.getItem('mode');
+          let theme;
+
+          if (storageTheme === "darkMode") {
+            theme = 'darkMode'
+          } else {
+            theme = 'lightMode'
+          }
+          
+          document.documentElement.classList.add(theme);
+          document.documentElement.style.backgroundColor = theme === "darkMode" ? "#1a1a1a" : "#fff";
+        }
+      })();
+    
+    </script>
+
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>

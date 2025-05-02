@@ -1,6 +1,7 @@
 export const lightTheme = {
   font : {
-    fontMain : '#333'
+    fontMain : '#333',
+    fontWhite : '#fff'
   },
   colors: {
     colorMain: "#ffffff4d",
@@ -15,13 +16,15 @@ export const lightTheme = {
     colorWhite: "#FFFFFF",
   },
   bg : {
-    bgMain : "#fff"
+    bgMain : "#fff",
+    bgDark : "#1a1a1a"
   }
 };
 
 export const darkTheme = {
   font : {
-    fontMain : '#eee'
+    fontMain : '#eee',
+    fontWhite : '#333'
   },
   colors: {
     colorMain: "#585D6E4d",
@@ -38,6 +41,7 @@ export const darkTheme = {
     colorDarkShadow: "0 3px 6px rgba(255, 255, 255, .5)",
   },
   bg : {
-    bgMain : "#1a1a1a"
+    bgMain : "#1a1a1a",
+    bgDark : "#fff"
   }
 };

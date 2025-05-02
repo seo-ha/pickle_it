@@ -14,6 +14,14 @@
   box-sizing: border-box;
 }
 
+html.darkMode {
+    background-color: #1a1a1a;
+  }
+  
+html.lightMode {
+    background-color: #ffffff;
+}
+
 ::before,
 ::after {
     box-sizing: inherit;

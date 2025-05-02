@@ -65,10 +65,8 @@ const AddCategory_popup = (style) => {
 
   const onCreateCategory = (e)=> {
     e.preventDefault()
-
-    console.log(categoryInput);
     
-    setCategory((prev)=>([...prev,{id: ref.current = ref.current + 1, name :categoryInput.title, bg:categoryInput.radio}]))
+    setCategory((prev)=>([{id: ref.current = ref.current + 1, name :categoryInput.title, bg:categoryInput.radio},...prev]))
     
     setPopup(false);
 
@@ -82,15 +80,15 @@ const AddCategory_popup = (style) => {
     <Popup opacity={style}>
       <PopupInner onSubmit={onCreateCategory}>
      
-        <input type="text" placeholder='Title' className='title' value={categoryInput.title} onChange={(e)=>handleInputChange('title',e)}/>
+        <input type="text" placeholder='Title' className='title' required value={categoryInput.title} onChange={(e)=>handleInputChange('title',e)}/>
 
         <RadioWrap>
-          <Radio type="radio" name="bgColor" color={'blue'} value="blue" onChange={(e)=>handleInputChange('radio',e)}/>
-          <Radio type="radio" name="bgColor" color={'green'} value="green" onChange={(e)=>handleInputChange('radio',e)}/>
-          <Radio type="radio" name="bgColor" color={'yellow'} value="yellow" onChange={(e)=>handleInputChange('radio',e)}/>
-          <Radio type="radio" name="bgColor" color={'black'} value="black" onChange={(e)=>handleInputChange('radio',e)}/>
-          <Radio type="radio" name="bgColor" color={'red'} value="red" onChange={(e)=>handleInputChange('radio',e)}/>
-          <Radio type="radio" name="bgColor" color={'plnk'} value="plnk" onChange={(e)=>handleInputChange('radio',e)}/>
+          <Radio type="radio" name="bgColor" color={'blue'}  value="blue" onChange={(e)=>handleInputChange('radio',e)}required/>
+          <Radio type="radio" name="bgColor" color={'green'} value="green" onChange={(e)=>handleInputChange('radio',e)}required/>
+          <Radio type="radio" name="bgColor" color={'yellow'} value="yellow" onChange={(e)=>handleInputChange('radio',e)}required/>
+          <Radio type="radio" name="bgColor" color={'black'} value='black' onChange={(e)=>handleInputChange('radio',e)}required/>
+          <Radio type="radio" name="bgColor" color={'red'} value="#e74141" onChange={(e)=>handleInputChange('radio',e)}required/>
+          <Radio type="radio" name="bgColor" color={'plnk'} value="#ebabeb" onChange={(e)=>handleInputChange('radio',e)}required/>
         </RadioWrap>
 
         <BtnWrap>
