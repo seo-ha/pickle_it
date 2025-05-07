@@ -13,8 +13,8 @@ export const ListContent = styled.div `
   display:flex; align-items:start; height: 100%; gap: 20px; opacity: 0; overflow:hidden; transition:opacity .3s;
 
   .img-box {
-    width:100px;min-width:100px; aspect-ratio: 3/4; border:1px solid;
-    img {width:100%; height:100%; object-fit:cover;}
+    width:120px; min-width:120px; aspect-ratio: auto 1/1; text-align:center; background-color: black;
+    img {width:100%; height:100%; object-fit: contain;}
   }
 `
 
@@ -23,7 +23,7 @@ export const List = styled.li `
 
   &:nth-child(1) {margin-top:auto;}
 
-  &.on {height: 250px;}
+  &.on {height: 230px;}
   &.on ${ListContent} { opacity: 1; padding-bottom:60px;}
 
 `
@@ -38,7 +38,7 @@ export const ContentTxt = styled.div `
   flex-grow:1; max-height:100%;
 
   .star {display:flex; margin-bottom:10px;}
-  .descript {display:-webkit-box; font-size:.938rem; overflow:hidden; text-overflow:ellipsis; -webkit-line-clamp:5; -webkit-box-orient:vertical; }
+  .descript {display:-webkit-box; font-size:.938rem; overflow:hidden; text-overflow:ellipsis; -webkit-line-clamp:4; -webkit-box-orient:vertical; }
   .dete {display:block; margin-top:10px; width: 100%; font-size:.813rem; text-align:right; }
 `
 

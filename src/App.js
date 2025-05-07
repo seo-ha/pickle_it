@@ -10,6 +10,7 @@ import { darkTheme, lightTheme } from './theme';
 import ListPage from './pages/ListPage';
 import DetailPage from './pages/DetailPage';
 import { createContext, useEffect, useRef, useState } from 'react';
+import EditorPage from './pages/EditorPage';
 
 
 export const MainContext = createContext();
@@ -28,10 +29,10 @@ function App() {
     { id:5, name :'all', bg:'black'},
   ])
 
-  useEffect(()=>{
-    console.log(category);
+  // useEffect(()=>{
+  //   console.log(category);
     
-  },[category])
+  // },[category])
 
   return (
     <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
@@ -47,8 +48,9 @@ function App() {
             <Container>
               <Routes>
                 <Route path='/' element={<Home/>}/>
-                <Route path='/list/:category' element={<ListPage/>}/>
-                <Route path='/list/:category/:detail' element={<DetailPage/>}/>
+                <Route path='/list/:categoryId/editor' element={<EditorPage/>}/>
+                <Route path='/list/:categoryId' element={<ListPage/>}/>
+                <Route path='/list/:categoryId/:detail' element={<DetailPage/>}/>
               </Routes>
             </Container>
 
