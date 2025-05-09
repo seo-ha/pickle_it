@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { supabase } from './../lib/supabaseClient';
+import { getCategoryUUID, supabase, uploadImagesToSupabase } from './../lib/supabaseClient';
 import { EditorWrap, InputBox, Label, StarWrap, SwiperStyle, Thumb, Title } from '../styles/editor';
 import { FaRegStar, FaStar } from 'react-icons/fa';
 import {Swiper, SwiperSlide } from 'swiper/react';
@@ -52,13 +52,16 @@ function EditorPage() {
   }
 
   //이미지 추가하기
-  const onChangeFile = (e, idx) => {
+  const onChangeFile = async(e, idx) => {
     const file = e.target.files[0];
     if(!file) return;
 
-    const preview = URL.createObjectURL(file);
+    const fileName = `${Date.now()}_${file.name}`
+    const url = await uploadImagesToSupabase(file, fileName);
+    if(!url) return;
+
     const newImages = [...input.images];
-    newImages[idx] = preview;
+    newImages[idx] = url;
     setInput({
       ...input,
       images : newImages
@@ -74,22 +77,6 @@ function EditorPage() {
       images : newImages
     })
   }
-
-  // 문자열 -> uuid로 변환
-  const getCategoryUUID = async (name) => {
-    const { data, error } = await supabase
-      .from('categories')
-      .select('id')
-      .eq('name', name)
-      .single();
-  
-    if (error) {
-      console.error('카테고리 조회 실패:', error);
-      return null;
-    }
-  
-    return data.id;
-  };
 
   //db 저장하기
   const saveToDB = async ()=>{
@@ -123,9 +110,6 @@ function EditorPage() {
       nav(`/list/${categoryId}`);
     }
   }
-  useEffect(() => {
-    console.log('categoryId:', categoryId); // uuid 문자열이어야 함
-  }, []);
 
   return (
     <EditorWrap>

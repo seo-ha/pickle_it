@@ -2,6 +2,8 @@ import React, { useContext } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router'
 import { FooterStyle } from '../styles/layout';
 import { MainContext } from '../App';
+import { FaPlus } from 'react-icons/fa';
+import { AiOutlineHome } from 'react-icons/ai';
 
 const Footer = () => {
 
@@ -22,7 +24,7 @@ const Footer = () => {
       <Link className={`nav-btn`}>편집</Link>
       <Link className={`nav-btn`}>달력</Link>
       <button className={`nav-btn`} onClick={()=>handleLocation()}>
-        {location === '/' ? '+' : '홈'}
+        {location === '/' ? <FaPlus className='ico_plus'/> : <AiOutlineHome className='ico_home'/>}
       </button>
       <Link className={`nav-btn`}>게시판</Link>
       <Link className={`nav-btn`}>마이</Link>

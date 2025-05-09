@@ -1,34 +1,90 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { MainContext } from '../App'
 import { Category, CategoryList } from '../styles/home';
 import AddCategoryPopup from '../components/AddCategoryPopup';
 import { useThemeToggleStore } from '../store/themeStore';
+import { supabase } from '../lib/supabaseClient';
+import CategoryDeletePopup from '../components/CategoryDeletePopup';
 
 
 const Home = () => {
   
-  const {category, popup} = useContext(MainContext);
+  const {popup, isCatetoryModify} = useContext(MainContext);
   const {isDark} = useThemeToggleStore();
+  const [items,setItems] = useState([]);
+  const [categoryDeletePopup,setCategoryDeletePopup] = useState(false);
+  const [categoryDeleteName,setCategoryDeleteName] = useState('');
+
+
+  //데이터 가져오기
+  const fetchItem = async ()=>{
+    const {data : categories,error} = await supabase
+    .from('categories')
+    .select('*')
+    .order('created_at',{ascending:false})
+
+    if (error) {
+      console.error('카테고리 불러오기 실패:', error);
+      return;
+    } 
+
+    //카테고리 별 카운트 세기
+    const withCounts = await Promise.all(
+      categories.map( async(cate)=>{
+        const {count} = await supabase
+        .from('items')
+        .select('*',{count:'exact',head:true})
+        .eq('category_id', cate.id);
+
+        return {
+          ...cate,
+          count : count || 0,
+        }
+      })
+    )
+
+    setItems(withCounts)
+  }
+
+  useEffect(()=>{
+    fetchItem();
+  },[])
+
+  const categoryRemove = (e, name) =>{
+    e.stopPropagation();
+    e.preventDefault(); 
+    setCategoryDeletePopup(true);
+    setCategoryDeleteName(name)
+  }
+
 
   return (
     <>
       <CategoryList >
         {
-          category.map((cate)=>{
+          items.map((item)=>{
 
-            const backgroundColor = isDark && cate.bg === 'black' ? 'white' : cate.bg
+            const backgroundColor = isDark && item.color === 'black' ? 'white' : item.color
 
-            return <Category key={cate.id} href={`/list/${cate.name}`} color={`${cate.bg}`} style={{ backgroundColor : backgroundColor }}>
-              {cate.name.toUpperCase()}
-              <span>0</span>
+            return <Category key={item.id} href={`/list/${item.name}`} color={`${item.color}`} style={{ backgroundColor : backgroundColor }}>
+              {item.name.toUpperCase()}
+              <div>
+                {
+                  !isCatetoryModify 
+                  ? <span>{item.count}</span>
+                  : <button onClick={(e)=>{categoryRemove(e, item.name)}}>삭제</button>
+                }
+              </div>
             </Category>
           })
         }
       </CategoryList>
 
-      {
-        popup ? <AddCategoryPopup/> : ''
-      }
+      { popup ? <AddCategoryPopup onSubmitSuccess={fetchItem}/> : ''}
+
+      { categoryDeletePopup 
+        ? <CategoryDeletePopup setCategoryDeletePopup={setCategoryDeletePopup} categoryDeleteName={categoryDeleteName} onDeleteSuccess={fetchItem}/> 
+        : ''}
     </>
   )
 }

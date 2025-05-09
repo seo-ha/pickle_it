@@ -21,6 +21,7 @@ function App() {
 
   const ref = useRef(5);
   const [popup, setPopup] = useState(false)
+  const [isCatetoryModify, setIsCatetoryModify] = useState(false)
   const [category, setCategory] = useState([
     { id:1, name :'movie', bg : 'blue'},
     { id:2, name :'ticket', bg:'yellow'},
@@ -38,7 +39,8 @@ function App() {
     <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
       <Globalstyle/>
         <MainContext.Provider value={{
-            ref,category,setCategory,popup, setPopup
+            ref,category,setCategory,popup, setPopup,
+            isCatetoryModify,setIsCatetoryModify
           }}>
 
           <div className="App">

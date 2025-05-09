@@ -1,44 +1,51 @@
 import styled from "styled-components"
 
-export const ListContainer = styled.section `
-  width: 100%; height: 100%; padding: 1.25rem 0 0; overflow-y: auto;
+export const ListContainer = styled.section ` width: 100%; height: 100%; `
 
-`
 export const ListWrap = styled.ul `
-  display:flex; flex-direction:column; justify-content:flex-start; width: 100%; min-height: 100%;
+  width: 100%; min-height: 100%; overflow-y: auto;
+`
 
+export const ContentTxt = styled.div `
+ width:100%;
+  .descript {display:-webkit-box; flex-grow:1; max-height:67px; font-size:.938rem; overflow:hidden; text-overflow:ellipsis; -webkit-line-clamp:4; -webkit-box-orient:vertical; }
 `
 
 export const ListContent = styled.div `
-  display:flex; align-items:start; height: 100%; gap: 20px; opacity: 0; overflow:hidden; transition:opacity .3s;
+  display:flex; align-items:start; gap: 20px; width: 100%;
 
   .img-box {
     width:120px; min-width:120px; aspect-ratio: auto 1/1; text-align:center; background-color: black;
     img {width:100%; height:100%; object-fit: contain;}
   }
+
+  &.only-text {
+    ${ContentTxt} .descript { margin-bottom:15px; -webkit-line-clamp:3;}
+  }
+
+  &.has-img {
+    ${ContentTxt} { 
+      display: flex; flex-direction: column; height: 120px;
+      .descript {flex-grow:1;}
+    }
+  }
 `
 
 export const List = styled.li `
-  width: 100%; height: 90px; margin-top:-1.25rem; padding: 20px; border-radius: 1.25rem 1.25rem 0 0; background-color: lightblue; transition: height .3s; box-shadow: 0 0 1rem rgba(0,0,0,0.15); overflow: hidden;
-
-  &:nth-child(1) {margin-top:auto;}
-
-  &.on {height: 230px;}
-  &.on ${ListContent} { opacity: 1; padding-bottom:60px;}
+  width: 100%; transition: height 0.3s ease; padding: 15px 20px 20px; border-bottom: 1px solid #eaeaea; background-color: #fff; overflow: hidden;
 
 `
 export const ListTitle = styled.div `
-  display:flex; align-items:baseline; justify-content:space-between; gap: 0 10px; width: 100%; margin-bottom: 15px;
+  display:flex; align-items:center; justify-content:space-between; gap: 0 10px; width: 100%; height:30px; margin-bottom: 15px;
 
   strong {display:-webkit-box; max-height:40px; font-size:1.125rem; font-weight:600; overflow:hidden; text-overflow:ellipsis; -webkit-box-orient:vertical; -webkit-line-clamp:2; }
-  .link-btn {display:flex; align-items:center; justify-content:center; width: 65px; min-width:65px; height:30px; font-size:.875rem; border-radius:20px; border:1px solid #fff;}
+  .link-btn {display:flex; align-items:center; justify-content:center; width: 65px; min-width:65px; height:30px; font-size:.875rem; border-radius:20px; border:1px solid #bbb;}
 `
 
-export const ContentTxt = styled.div `
-  flex-grow:1; max-height:100%;
+export const ContentInfo = styled.div `
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; margin-top:auto; gap: 8px 10px;
 
-  .star {display:flex; margin-bottom:10px;}
-  .descript {display:-webkit-box; font-size:.938rem; overflow:hidden; text-overflow:ellipsis; -webkit-line-clamp:4; -webkit-box-orient:vertical; }
-  .dete {display:block; margin-top:10px; width: 100%; font-size:.813rem; text-align:right; }
+  .star {display:flex; align-items:center; flex-grow :1;}
+  .dete {display:inline-block; font-size:.813rem; text-align:right; flex-grow :1; }
+
 `
-

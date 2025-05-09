@@ -38,6 +38,9 @@ export const FooterStyle = styled.footer `
 
    &:nth-child(3) {border-radius: 50%; background-color: #333; color: #fff;}
  }
+
+ .ico_plus {}
+ .ico_home {font-size:1.5rem;}
 `
 
 
