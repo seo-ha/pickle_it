@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { Link, useParams } from 'react-router'
 import { ContentInfo, ContentTxt, List, ListContainer, ListContent, ListTitle, ListWrap } from '../styles/list'
 import { getCategoryUUID, supabase } from './../lib/supabaseClient';
+import { formatDate, starLength } from '../utils/helpers';
 
 const ListPage = () => {
 
@@ -13,14 +14,6 @@ const ListPage = () => {
 
   const onClick = (i) =>{
     setTabCur(i)
-  }
-
-  const starLength = (star) =>{
-    const stars = [];
-    for (let i = 0; i < star; i++) {
-      stars.push('⭐')
-    }
-    return stars;
   }
 
   const fetchItem = async() =>{
@@ -51,7 +44,7 @@ const ListPage = () => {
 
   useEffect(()=>{
     fetchItem()
-  },[categoryId])
+  },[categoryId]);
 
   return (
     <ListContainer>
@@ -85,7 +78,7 @@ const ListPage = () => {
                     {
                       item.star === 0 ? '' :  <div className="star">{starLength(item.star)}</div>
                     }
-                    <span className='dete'>{item.created_at.slice(0, 10)}</span>
+                    <span className='dete'>{formatDate(item.created_at)}</span>
                   </ContentInfo>
                 </ContentTxt>
               </ListContent>

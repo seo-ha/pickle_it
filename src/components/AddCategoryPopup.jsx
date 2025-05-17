@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { MainContext } from '../App'
-import { BtnWrap, Popup, PopupInner, Radio, RadioWrap } from '../styles/popup';
+import { BtnWrap, PopupInner, PopupWrap, Radio, RadioWrap } from '../styles/popup';
 import { supabase } from '../lib/supabaseClient';
 
 const AddCategory_popup = ({style, onSubmitSuccess}) => {
@@ -47,7 +47,7 @@ const AddCategory_popup = ({style, onSubmitSuccess}) => {
   }
 
   return (
-    <Popup opacity={style}>
+    <PopupWrap opacity={style}>
       <PopupInner>
 
         <h1 className='title'>카테고리 만들기</h1>
@@ -69,7 +69,7 @@ const AddCategory_popup = ({style, onSubmitSuccess}) => {
         </BtnWrap>
 
       </PopupInner>
-    </Popup>
+    </PopupWrap>
   )
 }
 

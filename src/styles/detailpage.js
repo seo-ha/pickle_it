@@ -6,7 +6,7 @@ export const DetailWrap = styled.section`
 
   h1 {display:block; margin-bottom:20px; font-size:1.5rem; font-weight:600; }
 
-  textarea {width:100%; height: 150px; padding:15px; line-height:1.35; border-radius:10px; border:1px solid #eaeaea; }
+  textarea {width:100%; height: 150px; padding:15px; line-height:1.35; border-radius:10px; border:1px solid #eaeaea; resize:none; }
 `
 
 export const InfoTop = styled.div`

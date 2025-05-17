@@ -12,7 +12,7 @@ const Home = () => {
   const {popup, isCatetoryModify} = useContext(MainContext);
   const {isDark} = useThemeToggleStore();
   const [items,setItems] = useState([]);
-  const [categoryDeletePopup,setCategoryDeletePopup] = useState(false);
+  const [DeletePopup,setDeletePopup] = useState(false);
   const [categoryDeleteName,setCategoryDeleteName] = useState('');
 
 
@@ -53,14 +53,14 @@ const Home = () => {
   const categoryRemove = (e, name) =>{
     e.stopPropagation();
     e.preventDefault(); 
-    setCategoryDeletePopup(true);
+    setDeletePopup(true);
     setCategoryDeleteName(name)
   }
 
 
   return (
     <>
-      <CategoryList >
+      <CategoryList>
         {
           items.map((item)=>{
 
@@ -82,8 +82,8 @@ const Home = () => {
 
       { popup ? <AddCategoryPopup onSubmitSuccess={fetchItem}/> : ''}
 
-      { categoryDeletePopup 
-        ? <CategoryDeletePopup setCategoryDeletePopup={setCategoryDeletePopup} categoryDeleteName={categoryDeleteName} onDeleteSuccess={fetchItem}/> 
+      { DeletePopup 
+        ? <CategoryDeletePopup setDeletePopup={setDeletePopup} categoryDeleteName={categoryDeleteName} onDeleteSuccess={fetchItem}/> 
         : ''}
     </>
   )

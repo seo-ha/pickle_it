@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { getCategoryUUID, supabase, uploadImagesToSupabase } from './../lib/supabaseClient';
 import { EditorWrap, InputBox, Label, StarWrap, SwiperStyle, Thumb, Title } from '../styles/editor';
 import { FaRegStar, FaStar } from 'react-icons/fa';
