@@ -37,8 +37,6 @@ const CategoryDeletePopup = ({style, setDeletePopup, categoryDeleteName, onDelet
       setDeletePopup(false);
       onDeleteSuccess();
     }
-    
-
   }
 
   return (

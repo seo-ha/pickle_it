@@ -1,11 +1,11 @@
-import React, { useContext, useState } from 'react'
-import { MainContext } from '../App'
+import React, { useState } from 'react'
 import { BtnWrap, PopupInner, PopupWrap, Radio, RadioWrap } from '../styles/popup';
 import { supabase } from '../lib/supabaseClient';
+import { toogleBooleanStore } from '../store/toogleBooleanStore';
 
 const AddCategory_popup = ({style, onSubmitSuccess}) => {
 
-  const {setPopup} = useContext(MainContext);
+  const {setPopup} = toogleBooleanStore();
 
   const [input, setInput] = useState({
     title : '',

@@ -1,13 +1,13 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { Link, useLocation, useNavigate } from 'react-router'
 import { HeaderStyle } from '../styles/layout';
-import { MainContext } from '../App';
+import { toogleBooleanStore } from '../store/toogleBooleanStore';
 
 
 
 function Header() {
 
-  const {isCatetoryModify, setIsCatetoryModify} = useContext(MainContext);
+  const {isCatetoryModify, setIsCatetoryModify} = toogleBooleanStore();
   const nav = useNavigate();
 
   const params = useLocation().pathname;

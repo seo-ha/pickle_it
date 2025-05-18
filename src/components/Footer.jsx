@@ -1,13 +1,13 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { Link, useLocation, useNavigate } from 'react-router'
 import { FooterStyle } from '../styles/layout';
-import { MainContext } from '../App';
 import { FaPlus } from 'react-icons/fa';
 import { AiOutlineHome } from 'react-icons/ai';
+import { toogleBooleanStore } from '../store/toogleBooleanStore';
 
 const Footer = () => {
 
-  const {setPopup} = useContext(MainContext)
+  const {setPopup} = toogleBooleanStore()
   const location = useLocation().pathname;
   const nav = useNavigate()
 

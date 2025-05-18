@@ -1,15 +1,15 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { MainContext } from '../App'
+import React, { useEffect, useState } from 'react'
 import { Category, CategoryList } from '../styles/home';
 import AddCategoryPopup from '../components/AddCategoryPopup';
 import { useThemeToggleStore } from '../store/themeStore';
 import { supabase } from '../lib/supabaseClient';
 import CategoryDeletePopup from '../components/CategoryDeletePopup';
+import { toogleBooleanStore } from '../store/toogleBooleanStore';
 
 
 const Home = () => {
   
-  const {popup, isCatetoryModify} = useContext(MainContext);
+  const {popup, isCatetoryModify} = toogleBooleanStore();
   const {isDark} = useThemeToggleStore();
   const [items,setItems] = useState([]);
   const [DeletePopup,setDeletePopup] = useState(false);

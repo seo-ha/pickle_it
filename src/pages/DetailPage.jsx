@@ -16,7 +16,6 @@ const DetailPage = () => {
   const [thumbSwiper, setThumbSwiper] = useState(null);
   const [items,setItems] = useState([]);
   const [DeletePopup,setDeletePopup] = useState(false);
-  // const [categoryDeleteId,setCategoryDeleteId] = useState('');
   
   const fetchItem = async() =>{
 
@@ -41,7 +40,7 @@ const DetailPage = () => {
   return (
     <DetailWrap>
 
-       <SwiperStyeld style={{ display: items?.images?.length > 1 ? 'block' : 'none' }}>
+       <SwiperStyeld style={{ display: items?.images?.length >= 1 ? 'block' : 'none' }}>
           {/*메인 swiper*/}
           <Swiper className='mainSwiper'
             modules={[Pagination, Thumbs]}
