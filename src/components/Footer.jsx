@@ -21,13 +21,11 @@ const Footer = () => {
 
   return (
     <FooterStyle>
-      <Link className={`nav-btn`}>편집</Link>
-      <Link className={`nav-btn`}>달력</Link>
-      <button className={`nav-btn`} onClick={()=>handleLocation()}>
+      <Link className={`nav-btn`}>게시판</Link>
+      <button className={`nav-btn home`} onClick={()=>handleLocation()}>
         {location === '/' ? <FaPlus className='ico_plus'/> : <AiOutlineHome className='ico_home'/>}
       </button>
-      <Link className={`nav-btn`}>게시판</Link>
-      <Link className={`nav-btn`}>마이</Link>
+      <Link className={`nav-btn`} to={'/mypage'}>마이</Link>
     </FooterStyle>
   )
 }

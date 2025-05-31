@@ -36,7 +36,7 @@ export const FooterStyle = styled.footer `
  .nav-btn {
    display: flex; align-items: center; justify-content: center; width: 55px; aspect-ratio: auto 1/1;
 
-   &:nth-child(3) {border-radius: 50%; background-color: #333; color: #fff;}
+   &.home {border-radius: 50%; background-color: #333; color: #fff;}
  }
 
  .ico_plus {}

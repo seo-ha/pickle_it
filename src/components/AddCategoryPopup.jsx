@@ -22,13 +22,17 @@ const AddCategory_popup = ({style, onSubmitSuccess}) => {
   const saveToDB = async()=> {
 
     const {title, radio} = input;
+
+    const {data: {user}} = await supabase.auth.getUser();
+
     const {error} = await supabase
     .from('categories')
     .insert([
       {
         name : title,
         color :radio,
-        created_at : new Date().toISOString()
+        created_at : new Date().toISOString(),
+        user_is : user.id
       }
     ]);
 

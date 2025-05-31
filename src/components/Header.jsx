@@ -38,8 +38,6 @@ function Header() {
         : HeaderActionButton() 
       }
 
-
-      {/* <DarkToggleButton onClick={toggleTheme}>{isDark ? "🌝" : "🌚"}</DarkToggleButton> */}
     </HeaderStyle>
   )
 }

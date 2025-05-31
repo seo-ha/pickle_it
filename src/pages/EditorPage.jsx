@@ -80,7 +80,6 @@ function EditorPage() {
 
   //db 저장하기
   const saveToDB = async ()=>{
-
     const { title, content, starPoint, images } = input;
     const filteredImages = images.filter(Boolean);
   
@@ -90,17 +89,25 @@ function EditorPage() {
       alert('카테고리를 찾을 수 없습니다.');
       return;
     }
-  
-    const {error} = await supabase
-    .from('items')
-    .insert([
+
+    // 현재 로그인 유저 ID 가져오기
+    const { data: sessionData } = await supabase.auth.getSession();
+    const userId = sessionData.session?.user?.id;
+
+    if (!userId) {
+      alert('로그인 정보를 찾을 수 없습니다.');
+      return;
+    }
+
+    const { error } = await supabase.from('items').insert([
       {
         title,
-        content : content,
-        star : starPoint,
-        images : filteredImages,
-        category_id:categoryUUID,
-        created_at : new Date().toISOString()
+        content,
+        star: starPoint,
+        images: filteredImages,
+        category_id: categoryUUID,
+        user_id: userId, // ✅ 추가
+        created_at: new Date().toISOString(),
       }
     ]);
 
