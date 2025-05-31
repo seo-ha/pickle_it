@@ -12,6 +12,7 @@ function LoginPage() {
   const handleLogin = async(e) =>{
     e.preventDefault();
     setLoading(true);
+    //브랜치 연습
 
     // 1. 아이디로 이메일 조회
     const { data: profile, error: findError } = await supabase
